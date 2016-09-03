@@ -9,7 +9,6 @@ class DataObserver {
   }
 
   updateData(data) {
-    console.log("observer")
     this.data = data
     this.signal()
   }

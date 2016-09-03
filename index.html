@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
     <title>goto.NRW</title>
 
     <!-- CSS includes -->
@@ -73,6 +75,7 @@
 
             sortable('.sortable')[0].addEventListener('sortstop', function(e) {
                 var child;
+
                 var input = [];
                 var i = $('.sortable')[0].children;
                 for (var j = 0; j < i.length; j++) {
