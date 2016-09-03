@@ -6,7 +6,7 @@
     <title>goto.NRW</title>
 
     <!-- CSS includes -->
-    
+
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="node_modules/leaflet/dist/leaflet.css" rel="stylesheet" type="text/css">
     <link href="node_modules/materialize-css/dist/css/materialize.min.css" rel="stylesheet">
@@ -43,13 +43,12 @@
             <p>Wähle deine Präferenzen aus.</p>
 
             <ul class="collection sortable">
-                <li class="collection-item">Nahverkehr</li>
-                <li class="collection-item">Sicherheit</li>
-                <li class="collection-item">Freizeit</li>
-                <li class="collection-item">Kultur</li>
-                <li class="collection-item">Bildung</li>
-                <li class="collection-item">Arbeitsmarkt</li>
-                <li class="collection-item">Wirtschaft</li>
+                <li class="collection-item 1" id="0">Nahverkehr</li>
+                <li class="collection-item 2" id="1">Sicherheit</li>
+                <li class="collection-item 3" id="2">Freizeit</li>
+                <li class="collection-item 4" id="3">Kultur</li>
+                <li class="collection-item 5" id="4">Bildung</li>
+                <li class="collection-item 6" id="5">Arbeitsmarkt</li>
             </ul>
         </div>
         <div class="modal-footer">
@@ -71,6 +70,29 @@
             $('.modal-trigger').leanModal();
 
             sortable('.sortable');
+
+            sortable('.sortable')[0].addEventListener('sortstop', function(e) {
+                /*
+
+                This event is triggered when the user stops sorting. The DOM position may have changed.
+
+                e.detail.item contains the element that was dragged.
+                e.detail.startparent contains the element that the dragged item came from.
+
+                */
+
+
+                var z;
+                var input = [];
+                var i = $('.sortable')[0].children;
+                for (var j = 0; j < i.length; j++) {
+                    z = i[j].id;
+                    input.push(z);
+                    console.log("The id is: " + z);
+                }
+                console.log(input);
+
+            });
         });
     </script>
 
@@ -81,16 +103,16 @@
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
             maxZoom: 18,
         }).addTo(map);
-    
+
     // Add NRW Kreise
-    
+
     $.getJSON("/KreiseNRW.json", function(areas){
-		
+
 		L.geoJson(areas).addTo(map);
-		
+
     })
-    
-    
+
+
     </script>
 </body>
 
