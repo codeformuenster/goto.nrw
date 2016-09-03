@@ -12,7 +12,7 @@ class App {
     AjaxCaller.getFreshData(dataObserver)
 
     setTimeout(function() {
-      console.log(citiesModel.sortBy([]))
+      console.log(citiesModel.sortBy(["publicTransport"]))
     }, 3000)
   }
 }
