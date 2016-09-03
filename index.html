@@ -44,7 +44,7 @@
             <h4>Deine Auswahl</h4>
             <p>Wähle deine Präferenzen aus.</p>
 
-            <ul class="collection sortable">
+            <ul class="collection sortable" id="draggable">
                 <li class="collection-item 1" id="publicTransport">Nahverkehr</li>
                 <li class="collection-item 2" id="security">Sicherheit</li>
                 <li class="collection-item 3" id="leisure">Freizeit</li>
@@ -64,41 +64,31 @@
     <script src="node_modules/sortablejs/Sortable.min.js"></script>
     <script src="node_modules/leaflet/dist/leaflet.js"></script>
     <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <script src="node_modules/html5sortable/dist/html.sortable.min.js" charset="utf-8"></script>
+    <script src="node_modules/sortablejs/Sortable.min.js" charset="utf-8"></script>
     <script src="js/client.min.js"></script>
 
     <script>
+    var list = document.getElementById("draggable");
+    Sortable.create(list,{
+        onUpdate: function (evt){
+            console.log('onUpdate.foo:', [evt.item, evt.from]);
+            var child;
+            var input = [];
+
+            var i = $('.sortable')[0].children;
+
+            for (var j = 0; j < i.length; j++) {
+                child = i[j].id;
+                input.push(child);
+            }
+            console.log(input);
+        }
+    }); // That's all.
         $(document).ready(function() {
-            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+
             $('.modal-trigger').leanModal();
 
-            sortable('.sortable');
-
-            sortable('.sortable')[0].addEventListener('sortstop', function(e) {
-                var child;
-				
-				/*
-                This event is triggered when the user stops sorting. The DOM position may have changed.
-
-                e.detail.item contains the element that was dragged.
-                e.detail.startparent contains the element that the dragged item came from.
-
-                */
-
-                var z;
-                
-
-                var input = [];
-                
-                var i = $('.sortable')[0].children;
-                
-                for (var j = 0; j < i.length; j++) {
-                    child = i[j].id;
-                    input.push(child);
-                }
-                console.log(input);
-
-            });
+            
         });
     </script>
 
