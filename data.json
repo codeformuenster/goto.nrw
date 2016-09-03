@@ -1,16 +1,5 @@
 [
  {
-   "id": "ID",
-   "region": "Region",
-   "publicTransport": "Nahverkehr",
-   "security": "Sicherheit",
-   "leisure": "Freizeit",
-   "culture": "Erholung",
-   "education": "Bildung",
-   "jobs": "Arbeitsmarkt",
-   "growth": "Wachstum"
- },
- {
    "id": "0",
    "region": "Düsseldorf, krfr. Stadt",
    "publicTransport": "0.76",

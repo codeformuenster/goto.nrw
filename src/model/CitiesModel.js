@@ -16,6 +16,7 @@ class CitiesModel extends AbstractObservableModel {
       })
     }
 
+    console.log(this.data)
     return this.data
   }
 }
