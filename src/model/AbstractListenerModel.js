@@ -4,7 +4,6 @@ class AbstractListenerModel {
   }
 
   updateData(data) {
-    console.log(data);
     this.data = data
   }
 }
