@@ -8,15 +8,19 @@ class CitiesModel extends AbstractObservableModel {
   sortBy(sortCredentials) {
 
     for (var i = sortCredentials.length; i > 0;  i-- ) {
-      this.data.sort(function(a, b) {
-        if (a[sortCredentials[i]])
-          return a[sortCredentials[i]] - a[sortCredentials[i]]
+      var weight = 0.2
+      this.data.forEach(function(city) {
+        if (!city.weight)
+          city.weight = 0
 
-        return 0
+        city.weight += city[sortCredentials] * weight
+        weight += 0.2
       })
     }
 
-    console.log(this.data)
+    this.data.sort(function(a, b) {
+      return a.weight - b.weight
+    })
     return this.data
   }
 }
