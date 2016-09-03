@@ -59,11 +59,16 @@ class App {
                 })
               })
 
+              var onEachFeatureFunc = function (feature, layer) {
+                layer.bindPopup(feature.properties.GEN);
+              };
+
               areas.features = selectedFeatures
               iLayerGood = L.geoJson(areas, {
                 style: {
                   "color": "#00E148"
-                }
+                },
+                onEachFeature: onEachFeatureFunc
               })
               iLayerGood.addTo(map);
 
@@ -71,7 +76,8 @@ class App {
               iLayerSemi = L.geoJson(areas, {
                 style: {
                   "color": "#C1DB55"
-                }
+                },
+                onEachFeature: onEachFeatureFunc
               })
               iLayerSemi.addTo(map);
 
@@ -79,7 +85,8 @@ class App {
               iLayerBad = L.geoJson(areas, {
                 style: {
                   "color": "#FF0500"
-                }
+                },
+                onEachFeature: onEachFeatureFunc
               })
               iLayerBad.addTo(map);
             })
