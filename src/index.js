@@ -1,2 +1,3 @@
-import $ from 'jquery'
-alert("Hallo World sadflkasd")
+import App from './App.js'
+
+App.run()
