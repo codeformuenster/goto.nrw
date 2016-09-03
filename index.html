@@ -41,7 +41,7 @@
             <h4>Deine Auswahl</h4>
             <p>Wähle deine Präferenzen aus.</p>
 
-            <ul class="collection">
+            <ul class="collection sortable">
                 <li class="collection-item">Nahverkehr</li>
                 <li class="collection-item">Sicherheit</li>
                 <li class="collection-item">Freizeit</li>
@@ -61,12 +61,15 @@
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/leaflet/dist/leaflet.js"></script>
     <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script src="node_modules/html5sortable/dist/html.sortable.min.js" charset="utf-8"></script>
     <script src="js/client.min.js"></script>
 
     <script>
         $(document).ready(function() {
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal-trigger').leanModal();
+
+            sortable('.sortable');
         });
     </script>
 
