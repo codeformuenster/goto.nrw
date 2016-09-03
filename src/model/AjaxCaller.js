@@ -7,7 +7,8 @@ export default class AjaxCaller {
     $.ajax({
       url: dataUrl,
       success: function(data) {
-        data = JSON.parse(data);
+        if (typeof data == "string")
+          data = JSON.parse(data);
         observer.updateData(data)
       }
     })
