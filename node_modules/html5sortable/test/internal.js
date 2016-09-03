@@ -1,0 +1,129 @@
+describe('Internal function tests', function(){
+  // testing basic api
+  var assert = require('chai').assert;
+  GLOBAL.document = require('jsdom').jsdom('<html lang="en-US"></html>');
+  GLOBAL.window = GLOBAL.document.defaultView;
+  GLOBAL.$ = GLOBAL.jQuery = require('../node_modules/jquery/dist/jquery.js');
+  var sortable = require("../src/html.sortable.src.js");
+  var $ul;
+  var ul;
+  var $li;
+  var li;
+
+  beforeEach(function(){
+    $('body').html('').append('<ul class="sortable"><li>item</li></ul>');
+    $ul = $('.sortable');
+    ul = $ul.get();
+    sortable(ul, 'destroy');
+    sortable(ul);
+    $li = $ul.find('li').first();
+    li = $li.get(0);
+  });
+
+  it('_removeSortableEvents', function(){
+    // remove general jQuery event object
+    sortable.__testing._removeSortableEvents(ul);
+    assert.isUndefined(ul.h5s && ul.h5s.events);
+    // remove individual events
+    // need to add on click so that event object is not removed
+    // when all sortable events are removed
+    sortable(ul);
+    $ul.on('click', 'console.log');
+    sortable.__testing._removeSortableEvents(ul);
+    assert.isFalse(((ul.h5s || {}).events || {}).hasOwnProperty('dragover'));
+    assert.isFalse(((ul.h5s || {}).events || {}).hasOwnProperty('dragenter'));
+    assert.isFalse(((ul.h5s || {}).events || {}).hasOwnProperty('drop'));
+  });
+
+  it('_removeItemEvents', function(){
+    // remove general jQuery event object
+    sortable.__testing._removeItemEvents(li);
+    assert.deepEqual(li.h5s.events, {});
+    // remove individual events
+    // need to add on click so that event object is not removed
+    // when all sortable events are removed
+    sortable(ul);
+    $li.on('click', 'console.log');
+    sortable.__testing._removeItemEvents(li);
+    // test individual events
+    assert.isFalse((li.h5s.events || {}).hasOwnProperty('dragover'));
+    assert.isFalse((li.h5s.events || {}).hasOwnProperty('dragenter'));
+    assert.isFalse((li.h5s.events || {}).hasOwnProperty('drop'));
+    assert.isFalse((li.h5s.events || {}).hasOwnProperty('dragstart'));
+    assert.isFalse((li.h5s.events || {}).hasOwnProperty('dragend'));
+    assert.isFalse((li.h5s.events || {}).hasOwnProperty('mousedown'));
+  });
+
+  it('_removeSortableData', function(){
+    // destroy, so it does not use old values
+    sortable(ul, 'destroy');
+    sortable(ul, {
+      items: 'li',
+      connectWith: '.test'
+    });
+    sortable.__testing._removeSortableData($ul.get(0));
+
+    assert.isUndefined(sortable.__testing._data($ul.get(0), 'opts'));
+    assert.isUndefined(sortable.__testing._data($ul.get(0), 'connectWith'));
+    assert.isUndefined(sortable.__testing._data($ul.get(0), 'items'));
+    assert.isUndefined(sortable.__testing._data($ul.get(0), 'aria-dropeffect'));
+  });
+
+  it('_removeItemData', function(){
+    // destroy, so it does not use old values
+    sortable(ul, 'destroy');
+    sortable(ul, {
+      items: 'li',
+      connectWith: '.test'
+    });
+    sortable.__testing._removeItemData($ul.find('li').get());
+    var li = $ul.find('li').first();
+    assert.isUndefined(li.attr('role'));
+    assert.isUndefined(li.attr('draggable'));
+    assert.isUndefined(li.attr('aria-grabbed'));
+  });
+
+  it('_listsConnected', function(){
+    $('body').append('<ul class="sortable2"><li>item</li></ul>');
+    $ul2 = $('.sortable2');
+    sortable($ul2.get());
+    // test same sortable
+    assert.equal(sortable.__testing._listsConnected($ul.get(0), $ul.get(0)), true);
+    // test different sortables without connect with
+    assert.equal(sortable.__testing._listsConnected($ul.get(0), $ul2.get(0)), false);
+    // test one list with connectWith & one without
+    sortable(ul, 'destroy');
+    sortable(ul, {
+      connectWith: '.test'
+    });
+    assert.equal(sortable.__testing._listsConnected($ul.get(0), $ul2.get(0)), false);
+    // test not matching connectWith
+    sortable($ul2.get(), 'destroy');
+    sortable($ul2.get(), {
+      connectWith: '.test2'
+    });
+    assert.equal(sortable.__testing._listsConnected($ul.get(0), $ul2.get(0)), false);
+    // test matching connectWith
+    sortable($ul2.get(), 'destroy');
+    sortable($ul2.get(), {
+      connectWith: '.test'
+    });
+    assert.equal(sortable.__testing._listsConnected($ul.get(0), $ul2.get(0)), true);
+  });
+
+  it('_index', function(){
+    var div = document.createElement('div');
+    var child1 = document.createElement('div');
+    var child2 = document.createElement('div');
+    var child3 = document.createElement('div');
+    var child4 = document.createElement('div');
+    div.appendChild(child1);
+    div.appendChild(child2);
+    div.appendChild(child3);
+    assert.equal(sortable.__testing._index(child1), 0);
+    assert.equal(sortable.__testing._index(child2), 1);
+    assert.equal(sortable.__testing._index(child3), 2);
+    assert.equal(sortable.__testing._index(child4), 0);
+  });
+
+});
