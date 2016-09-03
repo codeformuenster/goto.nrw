@@ -50,10 +50,10 @@ class App {
                   if (county.properties.id == city.id && index < 3) {
                     selectedFeatures.push(county)
                   }
-                  if (county.properties.id == city.id && index >= 3 && index < 10) {
+                  if (county.properties.id == city.id && index >= 3 && index < 45) {
                     selectedFeatures2nd.push(county)
                   }
-                  if (county.properties.id == city.id && index >= 50) {
+                  if (county.properties.id == city.id && index >= 45) {
                     badFeatures.push(county)
                   }
                 })
@@ -70,7 +70,7 @@ class App {
               areas.features = selectedFeatures2nd
               iLayerSemi = L.geoJson(areas, {
                 style: {
-                  "color": "#C1DB55"
+                  "color": "#AAA1A7"
                 }
               })
               iLayerSemi.addTo(map);
