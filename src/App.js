@@ -6,7 +6,7 @@ var dataObserver = new DataObserver()
 var citiesModel = new CitiesModel()
 
 var map = L.map('map').setView([51.517, 7.602914], 7);
-var layerURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; // OSM Maps at the moment.
+var layerURL = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'; // OSM Maps at the moment.
 var iLayer;
 
 class App {
