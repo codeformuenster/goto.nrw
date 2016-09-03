@@ -13,9 +13,9 @@
     "jquery": "^3.1.0",
     "leaflet": "^0.7.7",
     "materialize-css": "^0.97.7",
+    "sortablejs": "^1.4.2",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
-    "html5sortable": "0.4.2"
+    "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {},
   "scripts": {
