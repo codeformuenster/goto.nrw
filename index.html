@@ -61,6 +61,7 @@
     <!-- JavaScript includes -->
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/sortablejs/Sortable.min.js"></script>
     <script src="node_modules/leaflet/dist/leaflet.js"></script>
     <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script src="node_modules/html5sortable/dist/html.sortable.min.js" charset="utf-8"></script>
@@ -75,9 +76,22 @@
 
             sortable('.sortable')[0].addEventListener('sortstop', function(e) {
                 var child;
+				
+				/*
+                This event is triggered when the user stops sorting. The DOM position may have changed.
+
+                e.detail.item contains the element that was dragged.
+                e.detail.startparent contains the element that the dragged item came from.
+
+                */
+
+                var z;
+                
 
                 var input = [];
+                
                 var i = $('.sortable')[0].children;
+                
                 for (var j = 0; j < i.length; j++) {
                     child = i[j].id;
                     input.push(child);

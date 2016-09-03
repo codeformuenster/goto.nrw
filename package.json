@@ -10,12 +10,13 @@
     "babel-preset-stage-0": "^6.5.0",
     "bootstrap": "^3.3.6",
     "dateformat": "^1.0.12",
+    "html5sortable": "0.4.2",
     "jquery": "^3.1.0",
+    "jquery-mobile": "^1.4.1",
     "leaflet": "^0.7.7",
     "materialize-css": "^0.97.7",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
-    "html5sortable": "0.4.2"
+    "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {},
   "scripts": {
