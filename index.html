@@ -113,47 +113,6 @@
     <script src="node_modules/sortablejs/Sortable.min.js" charset="utf-8"></script>
     <script src="js/client.min.js"></script>
 
-    <script>
-        var list = document.getElementById("draggable");
-        Sortable.create(list, {
-            onUpdate: function(evt) {
-                console.log('onUpdate.foo:', [evt.item, evt.from]);
-                var child;
-                var input = [];
-
-                var i = $('.sortable')[0].children;
-
-                for (var j = 0; j < i.length; j++) {
-                    child = i[j].id;
-                    input.push(child);
-                }
-                console.log(input);
-            }
-        }); // That's all.
-        $(document).ready(function() {
-
-            $('.modal-trigger').leanModal();
-
-
-        });
-    </script>
-
-    <script>
-        var map = L.map('map').setView([51.517, 7.602914], 8);
-        var layerURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; // OSM Maps at the moment.
-        L.tileLayer(layerURL, {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-            maxZoom: 18,
-        }).addTo(map);
-
-        // Add NRW Kreise
-
-        $.getJSON("/KreiseNRW.json", function(areas) {
-
-            L.geoJson(areas).addTo(map);
-
-        })
-    </script>
 </body>
 
 </html>
