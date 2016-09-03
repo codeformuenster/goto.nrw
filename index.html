@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>goto.NRW</title>
 
@@ -8,44 +9,52 @@
 
     <link href="node_modules/leaflet/dist/leaflet.css" rel="stylesheet" type="text/css">
     <link href="node_modules/materialize-css/dist/css/materialize.min.css" rel="stylesheet">
-	
-	<style>
-	
-	body {
-		padding: 0;
-		margin: 0;
-	}
-	
-	html, body, #map {
-		height: 100%;
-	}
-		
-	</style>
 
-  </head>
-  <body>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
 
-  	<div id="map"></div>
-    
+        html,
+        body,
+        #map {
+            height: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+    </div>
+
     <!-- JavaScript includes -->
-        
-	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/leaflet/dist/leaflet.js"></script>
     <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script src="js/client.min.js"></script>
-    
-  </body>
 
-  	<script>
-  		var map = L.map('map').setView([51.505, -0.09], 13);
+</body>
 
-  		var layerURL='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';	// OSM Maps at the moment.
+<script>
+    var map = L.map('map').setView([51.505, -0.09], 13);
 
-  		L.tileLayer(layerURL, {
-  			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-  			maxZoom: 18,
-  		}).addTo(map);
+    var layerURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; // OSM Maps at the moment.
 
-  	</script>
-  </body>
+    L.tileLayer(layerURL, {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        maxZoom: 18,
+    }).addTo(map);
+</script>
+</body>
+
 </html>
