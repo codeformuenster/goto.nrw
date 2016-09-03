@@ -42,13 +42,12 @@
             <p>Wähle deine Präferenzen aus.</p>
 
             <ul class="collection sortable">
-                <li class="collection-item">Nahverkehr</li>
-                <li class="collection-item">Sicherheit</li>
-                <li class="collection-item">Freizeit</li>
-                <li class="collection-item">Kultur</li>
-                <li class="collection-item">Bildung</li>
-                <li class="collection-item">Arbeitsmarkt</li>
-                <li class="collection-item">Wirtschaft</li>
+                <li class="collection-item 1" id="0">Nahverkehr</li>
+                <li class="collection-item 2" id="1">Sicherheit</li>
+                <li class="collection-item 3" id="2">Freizeit</li>
+                <li class="collection-item 4" id="3">Kultur</li>
+                <li class="collection-item 5" id="4">Bildung</li>
+                <li class="collection-item 6" id="5">Arbeitsmarkt</li>
             </ul>
         </div>
         <div class="modal-footer">
@@ -70,6 +69,29 @@
             $('.modal-trigger').leanModal();
 
             sortable('.sortable');
+
+            sortable('.sortable')[0].addEventListener('sortstop', function(e) {
+                /*
+
+                This event is triggered when the user stops sorting. The DOM position may have changed.
+
+                e.detail.item contains the element that was dragged.
+                e.detail.startparent contains the element that the dragged item came from.
+
+                */
+
+
+                var z;
+                var input = [];
+                var i = $('.sortable')[0].children;
+                for (var j = 0; j < i.length; j++) {
+                    z = i[j].id;
+                    input.push(z);
+                    console.log("The id is: " + z);
+                }
+                console.log(input);
+
+            });
         });
     </script>
 
