@@ -1,6 +1,6 @@
 class AbstractListenerModel {
   constructor() {
-    this.data = {}
+    this.data = []
   }
 
   updateData(data) {

@@ -7,7 +7,7 @@ var citiesModel = new CitiesModel()
 
 var map = L.map('map').setView([51.517, 7.602914], 7);
 var layerURL = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'; // OSM Maps at the moment.
-var iLayer;
+var iLayer, iLayerGood, iLayerSemi, iLayerBad;
 
 class App {
   static run() {
@@ -36,21 +36,62 @@ class App {
             }
             console.log(input);
             citiesModel.sortBy(input)
-            if (iLayer)
-              map.removeLayer(iLayer)
+            if (iLayerGood) {
+              map.removeLayer(iLayerGood)
+              map.removeLayer(iLayerSemi)
+              map.removeLayer(iLayerBad)
+            }
             $.getJSON("/KreiseNRW.json", function(areas) {
               var selectedFeatures = []
+              var selectedFeatures2nd = []
+              var badFeatures = []
               citiesModel.data.forEach(function(city, index) {
                 areas.features.forEach(function(county) {
                   if (county.properties.id == city.id && index < 3) {
                     selectedFeatures.push(county)
                   }
+                  if (county.properties.id == city.id && index >= 3 && index < 45) {
+                    selectedFeatures2nd.push(county)
+                  }
+                  if (county.properties.id == city.id && index >= 45) {
+                    badFeatures.push(county)
+                  }
                 })
               })
+
+              var onEachFeatureFunc = function (feature, layer) {
+                layer.bindPopup(feature.properties.GEN);
+              };
+
               areas.features = selectedFeatures
-              console.log(areas);
-              iLayer = L.geoJson(areas)
-              iLayer.addTo(map);
+              iLayerGood = L.geoJson(areas, {
+                style: {
+                  "color": "#00E148"
+                },
+                onEachFeature: onEachFeatureFunc
+              })
+              iLayerGood.addTo(map);
+
+              areas.features = selectedFeatures2nd
+              iLayerSemi = L.geoJson(areas, {
+                style: {
+
+                  "color": "#AAA1A7"
+
+                },
+                onEachFeature: onEachFeatureFunc
+
+              })
+              iLayerSemi.addTo(map);
+
+              areas.features = badFeatures
+              iLayerBad = L.geoJson(areas, {
+                style: {
+                  "color": "#FF0500"
+                },
+                onEachFeature: onEachFeatureFunc
+              })
+              iLayerBad.addTo(map);
             })
         }
     }); // That's all.

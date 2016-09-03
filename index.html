@@ -13,6 +13,8 @@
     <link href="node_modules/leaflet/dist/leaflet.css" rel="stylesheet" type="text/css">
     <link href="node_modules/materialize-css/dist/css/materialize.min.css" rel="stylesheet">
 
+    <link rel="shortcut icon" href="/favicon.png" />
+
     <style>
         body {
             padding: 0;
@@ -29,13 +31,60 @@
 </head>
 
 <body>
+  <img src="gotoNRW.png" style="position:absolute; max-width:125px;top:0;right:0;z-index:99;"></img>
+
+    <!-- Modal Structure -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4>FAQ</h4>
+            <h5>Was ist GOTO.nrw?</h5>
+            <p>
+                GOTO.nrw ist eine Platform die dir hilft deinen optimalen Wohnort zu finden. Durch deine eigene persönliche Gewichtung der Faktoren wie Nahverkehr, Freizeit/Erholung, Bildung, Arbeitsmarkt, Wachstum und Sicherheit kannst du den für dich schönsten/besten/tollsten
+                Ort in NRW aufstöbern.
+            </p>
+            <h5>Woher kommen eure Daten?</h5>
+            <p>
+                Wie verwenden offene Daten, die von den Kommunen und den Landesbehörden von NRW bereitgestellt werden. Die Daten haben wir aufbereitet und daraus die Indikikatoren für die jeweiligen Kategorien errechnet. Die Daten kommen unter anderem aus dem open.nrw
+                Portal und dem Landesamt für Statistik.
+            </p>
+
+            <h5>Warum habt ihr Feature X nicht eingebaut?</h5>
+
+            <p>
+                GOTO.nrw ist an einem Nachmittag im September entstanden. Für mehr war erstmal nicht Zeit.
+
+            </p>
+            <h5>Wer seid ihr?p</h5>
+            <p>
+                Eine spontane Gruppe, die sich für das Projekt auf dem NRW Hackathon im Spätsommer 2016 gefunden hat.
+            </p>
+            <h5>Wo finde ich euren Quellcode?</h5>
+            <p>
+                Auf GitHub, wo sonst?
+            </p>
+            <a href="https://github.com/codeformuenster/goto.nrw">https://github.com/codeformuenster/goto.nrw</a>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Zurück zur App</a>
+        </div>
+    </div>
+
+
+
+
 
     <div id="map"></div>
 
     <!--  FLOATING ACTION BUTTON-->
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
         <a class="btn-floating btn-large red modal-trigger" href="#modal1">
-            <i class="large material-icons">mode_edit</i>
+            <i class="large material-icons">filter_list</i>
+        </a>
+    </div>
+    <!--  FLOATING ACTION BUTTON 2-->
+    <div class="fixed-action-btn" style="bottom: 125px; right: 24px;">
+        <a class="btn-floating btn-large green modal-trigger" href="#modal2">
+            <i class="large material-icons">info_outline</i>
         </a>
     </div>
     <!-- MODAL -->
@@ -66,6 +115,7 @@
     <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script src="node_modules/sortablejs/Sortable.min.js" charset="utf-8"></script>
     <script src="js/client.min.js"></script>
+
 </body>
 
 </html>
