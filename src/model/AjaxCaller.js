@@ -8,7 +8,6 @@ export default class AjaxCaller {
       url: dataUrl,
       success: function(data) {
         data = JSON.parse(data);
-        console.log("got data:", data)
         observer.updateData(data)
       }
     })

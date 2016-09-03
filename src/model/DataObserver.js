@@ -9,12 +9,13 @@ class DataObserver {
   }
 
   updateData(data) {
+    console.log("observer")
     this.data = data
     this.signal()
   }
 
   signal() {
-    this.listeners.forEach(function(listener) {
+    this.listeners.forEach((listener) => {
       listener.updateData(this.data)
     })
   }
