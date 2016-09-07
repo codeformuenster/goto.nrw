@@ -26,12 +26,24 @@
         #map {
             height: 100%;
         }
+
+        .goto-logo-header {
+          height: 24px;
+        }
+
+        .logo {
+          position:absolute;
+          max-width:125px;
+          top:0;
+          right:0;
+          z-index:99;
+        }
     </style>
 
 </head>
 
 <body>
-  <img src="gotoNRW.png" style="position:absolute; max-width:125px;top:0;right:0;z-index:99;"></img>
+  <img src="gotoNRW.png" class="logo" />
 
     <!-- Modal Structure -->
     <div id="modal2" class="modal">
@@ -90,8 +102,8 @@
     <!-- MODAL -->
     <div id="modal1" class="modal modal-fixed-footer">
         <div class="modal-content">
-            <h4>Deine Auswahl</h4>
-            <p>Wähle deine Präferenzen aus.</p>
+            <h4><img src="gotoNRW.png" class="goto-logo-header" />&nbsp;Willkommen</h4>
+            <p>Wähle deine Präferenzen durch Verschieben aus.</p>
 
             <ul class="collection sortable" id="draggable">
                 <li class="collection-item 1" id="publicTransport">Nahverkehr</li>
