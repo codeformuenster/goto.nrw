@@ -26,6 +26,13 @@
         #map {
             height: 100%;
         }
+        .draggable-row {
+          margin-bottom:0px;
+
+        }
+        .collection-item {
+          cursor: n-resize;
+        }
     </style>
 
 </head>
@@ -94,12 +101,42 @@
             <p>Wähle deine Präferenzen aus.</p>
 
             <ul class="collection sortable" id="draggable">
-                <li class="collection-item 1" id="publicTransport">Nahverkehr</li>
-                <li class="collection-item 2" id="security">Sicherheit</li>
-                <li class="collection-item 3" id="leisure">Freizeit</li>
-                <li class="collection-item 4" id="culture">Kultur</li>
-                <li class="collection-item 5" id="education">Bildung</li>
-                <li class="collection-item 6" id="jobs">Arbeitsmarkt</li>
+                <li class="collection-item 1" id="publicTransport">
+                  <div class="row draggable-row">
+                    <div class="col s11">Nahverkehr</div>
+                      <i class="col s1 material-icons" style="color:lightgrey;">reorder</i>
+                  </div>
+                </li>
+                <li class="collection-item 2" id="security">
+                  <div class="row draggable-row">
+                    <div class="col s11">Sicherheit</div>
+                      <i class="col s1 material-icons" style="color:lightgrey;">reorder</i>
+                  </div>
+                </li>
+                <li class="collection-item 3" id="leisure">
+                  <div class="row draggable-row">
+                    <div class="col s11">Freizeit</div>
+                      <i class="col s1 material-icons" style="color:lightgrey;">reorder</i>
+                  </div>
+                </li>
+                <li class="collection-item 4" id="culture">
+                  <div class="row draggable-row">
+                    <div class="col s11">Kultur</div>
+                      <i class="col s1 material-icons" style="color:lightgrey;">reorder</i>
+                  </div>
+                </li>
+                <li class="collection-item 5" id="education">
+                  <div class="row draggable-row">
+                    <div class="col s11">Bildung</div>
+                      <i class="col s1 material-icons" style="color:lightgrey;">reorder</i>
+                  </div>
+                </li>
+                <li class="collection-item 6" id="jobs">
+                  <div class="row draggable-row">
+                    <div class="col s11">Arbeitsmarkt</div>
+                      <i class="col s1 material-icons" style="color:lightgrey;">reorder</i>
+                  </div>
+                </li>
             </ul>
         </div>
         <div class="modal-footer">
