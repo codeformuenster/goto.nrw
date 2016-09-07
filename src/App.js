@@ -1,6 +1,11 @@
 import DataObserver from './model/DataObserver.js'
 import CitiesModel from './model/CitiesModel.js'
 import AjaxCaller from './model/AjaxCaller.js'
+import $ from 'jquery'
+import L from 'leaflet'
+import Sortable from 'sortablejs'
+
+window.$ = $;
 
 var dataObserver = new DataObserver()
 var citiesModel = new CitiesModel()
@@ -95,11 +100,6 @@ class App {
             })
         }
     }); // That's all.
-        $(document).ready(function() {
-
-            $('.modal-trigger').leanModal();
-             $('#modal1').openModal();
-        });
   }
 
   static map() {

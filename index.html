@@ -108,13 +108,14 @@
     </div>
 
     <!-- JavaScript includes -->
-
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/leaflet.js"></script>
+    <script src="assets/js/client.min.js"></script>
     <script src="assets/js/materialize.min.js"></script>
-    <script src="assets/js/Sortable.min.js" charset="utf-8"></script>
-    <script src="js/client.min.js"></script>
-
+    <script>
+        $(document).ready(function() {
+            $('.modal-trigger').leanModal();
+            $('#modal1').openModal();
+        });
+    </script>
 </body>
 
 </html>

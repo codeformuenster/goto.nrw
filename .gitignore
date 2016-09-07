@@ -1,3 +1,4 @@
 node_modules/
-js/
+assets/js/index.min.js
 npm-debug.log
+.idea/
