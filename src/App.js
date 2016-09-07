@@ -98,8 +98,7 @@ class App {
         $(document).ready(function() {
 
             $('.modal-trigger').leanModal();
-
-
+             $('#modal1').openModal();
         });
   }
 
