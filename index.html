@@ -10,8 +10,8 @@
     <!-- CSS includes -->
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="node_modules/leaflet/dist/leaflet.css" rel="stylesheet" type="text/css">
-    <link href="node_modules/materialize-css/dist/css/materialize.min.css" rel="stylesheet">
+    <link href="assets/css/leaflet.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/materialize.min.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="/favicon.png" />
 
@@ -54,7 +54,7 @@
                 GOTO.nrw ist an einem Nachmittag im September entstanden. Für mehr war erstmal nicht Zeit.
 
             </p>
-            <h5>Wer seid ihr?p</h5>
+            <h5>Wer seid ihr?</h5>
             <p>
                 Eine spontane Gruppe, die sich für das Projekt auf dem NRW Hackathon im Spätsommer 2016 gefunden hat.
             </p>
@@ -108,14 +108,14 @@
     </div>
 
     <!-- JavaScript includes -->
-
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/sortablejs/Sortable.min.js"></script>
-    <script src="node_modules/leaflet/dist/leaflet.js"></script>
-    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <script src="node_modules/sortablejs/Sortable.min.js" charset="utf-8"></script>
-    <script src="js/client.min.js"></script>
-
+    <script src="assets/js/client.min.js"></script>
+    <script src="assets/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.modal-trigger').leanModal();
+            $('#modal1').openModal();
+        });
+    </script>
 </body>
 
 </html>
