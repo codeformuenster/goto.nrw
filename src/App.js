@@ -14,19 +14,67 @@ var map = L.map('map').setView([51.517, 7.602914], 7);
 var layerURL = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'; // OSM Maps at the moment.
 var iLayer, iLayerGood, iLayerSemi, iLayerBad;
 
+var onEachFeatureFunc = function (feature, layer) {
+  layer.bindPopup(feature.properties.GEN);
+};
+
+var allAreas = [];
+var grayFeatures = [] // 52 shades of nrw
+var grayLayer;
+var layers = []
+
+function addLayer(features, color) {
+  layers.push(L.geoJson(features, {
+    style: {
+      "color": color
+    },
+    onEachFeature: onEachFeatureFunc
+  }))
+}
+
+function drawFeatures() {
+  layers.forEach(function (layer) {
+    layer.addTo(map)
+  })
+}
+
 class App {
   static run() {
     console.log("Starting App")
-
     dataObserver.addListener(citiesModel)
     AjaxCaller.getFreshData(dataObserver)
-
     App.map()
-    App.sort()
+    App.redraw()
+
+    $.getJSON("/KreiseNRW.json", function(areas) {
+      allAreas = areas
+      grayFeatures = allAreas
+      addLayer(grayFeatures, '#AAA1A7')
+      drawFeatures()
+    })
+  }
+
+  static redraw() {
+    var startButton = $('#redraw')
+
+    startButton.click(function () {
+      allAreas.features.forEach(function(area) {
+        var weight = 0;
+        var maxWeight = 0;
+        ['publicTransport', 'security', 'leisure', 'culture', 'education', 'jobs'].forEach(function(someString) {
+          console.log($('#' + someString).val(), area[someString])
+          maxWeight = area[someString]
+          weight += ($('#' + someString).val()/10) * area[someString]
+        })
+
+        area.weight = weight / maxWeight
+        console.log(area.weight)
+      })
+    })
   }
 
   static sort() {
-    var list = document.getElementById("draggable");
+    var list = document.getElementById("redraw");
     Sortable.create(list,{
         onUpdate: function (evt){
             console.log('onUpdate.foo:', [evt.item, evt.from]);
@@ -63,10 +111,6 @@ class App {
                   }
                 })
               })
-
-              var onEachFeatureFunc = function (feature, layer) {
-                layer.bindPopup(feature.properties.GEN);
-              };
 
               areas.features = selectedFeatures
               iLayerGood = L.geoJson(areas, {
