@@ -40,13 +40,12 @@ function drawFeatures() {
 
 class App {
   static run() {
-    console.log("Starting App")
     dataObserver.addListener(citiesModel)
     AjaxCaller.getFreshData(dataObserver)
     App.map()
     App.redraw()
 
-    $.getJSON("/KreiseNRW.json", function(areas) {
+    $.getJSON("/data_with_shades.json", function(areas) {
       allAreas = areas
       grayFeatures = allAreas
       addLayer(grayFeatures, '#AAA1A7')
@@ -58,17 +57,14 @@ class App {
     var startButton = $('#redraw')
 
     startButton.click(function () {
-      allAreas.features.forEach(function(area) {
+      allAreas.forEach(function(area) {
         var weight = 0;
         var maxWeight = 0;
         ['publicTransport', 'security', 'leisure', 'culture', 'education', 'jobs'].forEach(function(someString) {
-          console.log($('#' + someString).val(), area[someString])
           maxWeight = area[someString]
           weight += ($('#' + someString).val()/10) * area[someString]
         })
-
         area.weight = weight / maxWeight
-        console.log(area.weight)
       })
     })
   }
