@@ -1,13 +1,14 @@
+import L from 'leaflet'
+import $ from 'jquery'
+
+import model from './Model.js'
+
 var map = L.map('map').setView([51.517, 7.602914], 7);
 var layerURL = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'; // OSM Maps at the moment.
-var iLayer, iLayerGood, iLayerSemi, iLayerBad;
 
-var grayLayer;
+var allAreas = model.getAllData()
+
 var layers = []
-var grayFeatures = [] // 52 shades of nrw
-grayFeatures = allAreas
-addLayer(grayFeatures, '#AAA1A7')
-drawFeatures()
 
 var onEachFeatureFunc = function (feature, layer) {
   layer.bindPopup(feature.properties.GEN);
@@ -29,8 +30,6 @@ function drawFeatures() {
 }
 
 function setLayers() {
-  var allFeatures = allAreas.features
-
   var greenFeatures = allAreas.features.filter(function(area){ return area.weight >= 1.7 })
   var redFeatures = allAreas.features.filter(function(area){ return area.weight < 1.7 })
 
@@ -43,15 +42,7 @@ function setLayers() {
   drawFeatures()
 }
 
-static map() {
-  L.tileLayer(layerURL, {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-    maxZoom: 18,
-  }).addTo(map);
-
-}
-
-function () {
+function calculateWeight () {
   allAreas.features.forEach(function(area) {
     var weight = 0;
     var maxWeight = 0;
@@ -62,3 +53,20 @@ function () {
     area.weight = weight / maxWeight
   })
 }
+
+export default (function() {
+  return {
+    init: function() {
+      L.tileLayer(layerURL, {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        maxZoom: 18,
+      }).addTo(map);
+    },
+
+    redraw: function() {
+      allAreas = model.getAllData()
+      calculateWeight()
+      setLayers()
+    }
+  }
+})()

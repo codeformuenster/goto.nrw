@@ -1,15 +1,13 @@
 import model from './Model.js'
+import map from './ViewMap.js'
 import $ from 'jquery'
 window.$ = $;
 
 class App {
   static run() {
-    window.setTimeout(function() {
-      console.log(model.getAllData())
-    }, 10000);
-    //set Map
+    map.init()
     var startButton = $('#redraw')
-    startButton.click()
+    startButton.click(map.redraw)
   }
 }
 
