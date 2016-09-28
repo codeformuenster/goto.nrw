@@ -9,10 +9,11 @@ var layerURL = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}
 var allAreas = model.getAllData()
 
 var layers = []
+var drawnLayers = []
 
 var onEachFeatureFunc = function (feature, layer) {
   layer.bindPopup(feature.properties.GEN);
-};
+}
 
 function addLayer(features, color) {
   layers.push(L.geoJson(features, {
@@ -21,12 +22,6 @@ function addLayer(features, color) {
     },
     onEachFeature: onEachFeatureFunc
   }))
-}
-
-function drawFeatures() {
-  layers.forEach(function (layer) {
-    layer.addTo(map)
-  })
 }
 
 function setLayers() {
@@ -38,19 +33,12 @@ function setLayers() {
 
   allAreas.features = redFeatures
   addLayer(allAreas, "#FF0500")
-
-  drawFeatures()
 }
 
-function calculateWeight () {
-  allAreas.features.forEach(function(area) {
-    var weight = 0;
-    var maxWeight = 0;
-    ['publicTransport', 'security', 'leisure', 'culture', 'education', 'jobs'].forEach(function(someString) {
-      maxWeight = area.properties.gotoData[someString]
-      weight += ($('#' + someString).val()/10) * area.properties.gotoData[someString]
-    })
-    area.weight = weight / maxWeight
+function drawFeatures() {
+  layers.forEach(function (layer) {
+    layer.addTo(map)
+    drawnLayers.push(layer)
   })
 }
 
@@ -65,8 +53,8 @@ export default (function() {
 
     redraw: function() {
       allAreas = model.getAllData()
-      calculateWeight()
       setLayers()
+      drawFeatures()
     }
   }
 })()
