@@ -75,6 +75,20 @@ class App {
         })
         area.weight = weight / maxWeight
       })
+
+      // new function
+      var allFeatures = allAreas.features
+
+      var greenFeatures = allAreas.features.filter(function(area){ return area.weight >= 1.7 })
+      var redFeatures = allAreas.features.filter(function(area){ return area.weight < 1.7 })
+
+      allAreas.features = greenFeatures
+      addLayer(allAreas, "#00E148")
+
+      allAreas.features = redFeatures
+      addLayer(allAreas, "#FF0500")
+
+      drawFeatures()
     })
   }
 
