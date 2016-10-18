@@ -30,9 +30,6 @@
           margin-bottom:0px;
 
         }
-        .collection-item {
-          cursor: n-resize;
-        }
         .goto-logo-header {
           height: 24px;
         }
@@ -43,6 +40,19 @@
           top:0;
           right:0;
           z-index:99;
+        }
+
+        input[type=range]+.thumb {
+          top: -5px !important; /* distance between button and drop in slider */
+        }
+        .collection .collection-item {
+          border-bottom: none; /* no seperators */
+        }
+        label {
+          color: #37474F; /* slider label color */
+        }
+        .range-field {
+          text-align: center; /* slider label in center */
         }
     </style>
 
@@ -110,13 +120,13 @@
             <ul class="collection">
                 <li class="collection-item">
                   <div class="row range-field">
-                    <label for="publicTransport">ÖPNV</label>  
+                    <label for="publicTransport">ÖPNV</label>
                     <input type="range" id="publicTransport" min="0" max="10"/>
                   </div>
                 </li>
                 <li class="collection-item">
                   <div class="row range-field">
-                    <label for="security">Sicherheit</label>  
+                    <label for="security">Sicherheit</label>
                     <input type="range" id="security" min="0" max="10"/>
                   </div>
                 </li>
