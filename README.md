@@ -1,4 +1,6 @@
 [![](https://img.shields.io/docker/pulls/codeformuenster/goto-nrw.svg)](https://cloud.docker.com/u/codeformuenster/repository/docker/codeformuenster/goto-nrw)
+[![](https://img.shields.io/matrix/codeformuenster-hacking:matrix.org.svg)](https://matrix.to/#/!GOWtmogFsdfHyoZzze:matrix.org?via=matrix.org&via=matrix.allmende.io)
+
 
 # GOTO.nrw
 
