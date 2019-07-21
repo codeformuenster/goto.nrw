@@ -1,3 +1,5 @@
+[![](https://img.shields.io/docker/pulls/codeformuenster/goto-nrw.svg)](https://cloud.docker.com/u/codeformuenster/repository/docker/codeformuenster/goto-nrw)
+
 # GOTO.nrw
 
 ### Interaktiver Lebensqualitätsatlas mit ganz viel Open Data
