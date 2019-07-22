@@ -15,12 +15,15 @@
     "materialize-css": "^0.99.0",
     "sortablejs": "^1.4.2",
     "webpack": "^2.2.0",
-    "webpack-dev-server": "^3.1.6"
+    "webpack-dev-server": "^3.1.6",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {},
   "scripts": {
     "dev": "webpack --watch",
-    "start": "webpack | webpack-dev-server --content-base ./ --host 0.0.0.0 --port 80"
+    "start": "webpack | webpack-dev-server --content-base ./ --host 0.0.0.0 --port 80",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -31,5 +34,6 @@
   "bugs": {
     "url": "https://github.com/codeformuenster/goto.nrw/issues"
   },
-  "homepage": "https://github.com/codeformuenster/goto.nrw#readme"
+  "homepage": "https://github.com/codeformuenster/goto.nrw#readme",
+  "snyk": true
 }
