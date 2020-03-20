@@ -14,7 +14,7 @@
     "leaflet": "^0.7.7",
     "materialize-css": "^0.99.0",
     "sortablejs": "^1.4.2",
-    "webpack": "^2.2.0",
+    "webpack": "^4.0.0",
     "webpack-dev-server": "^3.1.6"
   },
   "devDependencies": {},
