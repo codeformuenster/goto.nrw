@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "dependencies": {
     "babel-core": "^6.11.4",
-    "babel-loader": "^6.2.4",
+    "babel-loader": "^8.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
     "bootstrap": "^4.0.0",
@@ -14,7 +14,7 @@
     "leaflet": "^0.7.7",
     "materialize-css": "^0.99.0",
     "sortablejs": "^1.4.2",
-    "webpack": "^2.2.0",
+    "webpack": "^5.0.0",
     "webpack-dev-server": "^3.1.6"
   },
   "devDependencies": {},
